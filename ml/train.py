@@ -20,7 +20,7 @@ def train_from_db():
                 "screen cracked", "battery issue", "wifi not working",
                 "data recovery needed", "system overheating"
             ]
-            labels = ["hardware", "network", "data_recovery", "maintenance", "battery", "screen", "software"]
+            labels = ["hardware", "network", "data_recovery", "maintenance"]
 
         clf = SimpleClassifier()
         clf.train(texts, labels)
