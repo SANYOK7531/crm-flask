@@ -1,9 +1,10 @@
 # app/db/session.py
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from app.core.config import settings
+from app.core.config import reload_settings
 
-engine = create_engine(settings.azure_sql_dsn, pool_pre_ping=True)
+settings = reload_settings()
+engine = create_engine(settings.aws_db, pool_pre_ping=True)
 SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False)
 
 def get_db():

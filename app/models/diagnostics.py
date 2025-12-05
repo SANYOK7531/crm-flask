@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, text
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, text, func
 from app.db.base import Base
 
 class Diagnostics(Base):   # <--- додаємо Base тут
@@ -8,4 +8,5 @@ class Diagnostics(Base):   # <--- додаємо Base тут
     request_id = Column(Integer, ForeignKey("requests.id", ondelete="CASCADE"))
     notes = Column(String(1000))
     result_code = Column(String(100))
-    created_at = Column(DateTime, server_default=text("SYSUTCDATETIME()"))
+    #created_at = Column(DateTime, server_default=text("SYSUTCDATETIME()"))
+    created_at = Column(DateTime, server_default=func.now())

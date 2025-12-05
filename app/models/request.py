@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, Enum, text
+from sqlalchemy import Column, Integer, String, DateTime, Enum, text, func
 from app.db.base import Base
 import enum
 
@@ -19,5 +19,7 @@ class Request(Base):   # <--- наслідуємо Base
     status = Column(Enum(RequestStatus), default=RequestStatus.new)
     priority = Column(String(50))
     category = Column(String(100))
-    created_at = Column(DateTime, server_default=text("SYSUTCDATETIME()"))
-    updated_at = Column(DateTime, server_default=text("SYSUTCDATETIME()"))
+    # created_at = Column(DateTime, server_default=text("SYSUTCDATETIME()"))
+    # updated_at = Column(DateTime, server_default=text("SYSUTCDATETIME()"))
+    created_at = Column(DateTime, server_default=func.now())
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now())

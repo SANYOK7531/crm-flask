@@ -1,9 +1,10 @@
 # app/core/security.py
 from jose import jwt
 from fastapi import HTTPException, status
-from app.core.config import settings
+from app.core.config import reload_settings
 
 def verify_jwt(token: str) -> dict:
+    settings = reload_settings()
     try:
         payload = jwt.decode(
             token,

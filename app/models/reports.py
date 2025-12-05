@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, DateTime, JSON, text
+from sqlalchemy import Column, Integer, DateTime, JSON, text, func
 from app.db.base import Base
 
 class Report(Base):   # <--- додаємо Base тут
@@ -8,4 +8,4 @@ class Report(Base):   # <--- додаємо Base тут
     period_start = Column(DateTime)
     period_end = Column(DateTime)
     summary_json = Column(JSON)
-    generated_at = Column(DateTime, server_default=text("SYSUTCDATETIME()"))
+    generated_at = Column(DateTime, server_default=func.now())
